@@ -12,8 +12,8 @@ struct ContentView: View {
     @State var playerCard = "card7"
     @State var cpuCard = "card13"
     
-    var playerScore = "0"
-    var cpuScore = "0"
+    @State var playerScore = 0
+    @State var cpuScore = 0
     
     var body: some View {
         
@@ -50,12 +50,12 @@ struct ContentView: View {
                     Spacer()
                     VStack {
                         Text("Player").font(.headline).padding(.bottom, 10.0)
-                        Text(playerScore).font(.largeTitle)
+                        Text(String(playerScore)).font(.largeTitle)
                     }
                     Spacer()
                     VStack {
                         Text("CPU").font(.headline).padding(.bottom, 10.0)
-                        Text(cpuScore).font(.largeTitle)
+                        Text(String(cpuScore)).font(.largeTitle)
                     }
                     Spacer()
                 }
@@ -73,10 +73,21 @@ struct ContentView: View {
         //to randomly display player and cpu cards
         
         //for player vard
-        playerCard = "card" + String(Int.random(in: 2...14))
+        var playerCardValue = Int.random(in: 2...14)
+        playerCard = "card" + String(playerCardValue)
         
         //for cpu card
-        cpuCard = "card" + String(Int.random(in: 2...14))
+        var cpuCardValue = Int.random(in: 2...14)
+        cpuCard = "card" + String(cpuCardValue)
+        
+        //to update the scores
+        if playerCardValue > cpuCardValue {
+            playerScore += 1
+        }else if cpuCardValue > playerCardValue{
+            cpuScore += 1
+        }
+        
+        
     }
 }
 
