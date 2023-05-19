@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var playerCard = "card7"
+    @State var cpuCard = "card13"
+    
+    var playerScore = "0"
+    var cpuScore = "0"
+    
     var body: some View {
         
         ZStack {
@@ -23,26 +30,32 @@ struct ContentView: View {
                 
                 HStack {
                     Spacer()
-                    Image("card2")
+                    Image(playerCard)
                     Spacer()
-                    Image("card3")
+                    Image(cpuCard)
                     Spacer()
                 }
                 Spacer()
                 
-                Image("button")
+                Button {
+                    deal()
+                } label: {
+                    Image("button")
+                }
+
+
                 Spacer()
                 
                 HStack {
                     Spacer()
                     VStack {
                         Text("Player").font(.headline).padding(.bottom, 10.0)
-                        Text("0").font(.largeTitle)
+                        Text(playerScore).font(.largeTitle)
                     }
                     Spacer()
                     VStack {
                         Text("CPU").font(.headline).padding(.bottom, 10.0)
-                        Text("0").font(.largeTitle)
+                        Text(cpuScore).font(.largeTitle)
                     }
                     Spacer()
                 }
@@ -54,6 +67,16 @@ struct ContentView: View {
         }
         
         
+    }
+    
+    func deal() {
+        //to randomly display player and cpu cards
+        
+        //for player vard
+        playerCard = "card" + String(Int.random(in: 2...14))
+        
+        //for cpu card
+        cpuCard = "card" + String(Int.random(in: 2...14))
     }
 }
 
